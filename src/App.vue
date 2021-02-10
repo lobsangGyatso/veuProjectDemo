@@ -38,7 +38,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container no-gutters>
+      <v-container>
         <v-row>
           <v-col cols="9">  <v-text-field v-model="value" outlined></v-text-field></v-col>
           <v-col cols="3">  <v-btn @click="getDataFromApi">Search</v-btn> </v-col>
@@ -85,6 +85,7 @@ export default {
   }),
    methods: {
     getDataFromApi () {
+      if(this.value){
       this.$store.dispatch('get_data_from_api', this.value)
         .then(response => {
           console.log(response.results)
@@ -94,6 +95,7 @@ export default {
           this.value = ''
           console.log(error)
         })
+      }
     },
     itemClick (item, number, index) {
       // this.id = number
